@@ -108,20 +108,28 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="全能的哥">
-<meta property="og:url" content="http://guange.me/index.html">
+  <meta name="description" content="本文适合什么样的人 有兴趣了解区块链智能合约 有编程基础，希望可以入门区块链的开发 有做过一些区块链开发，想寻找最佳实践  什么是智能合约要了解什么是智能合约，可以从两方面来看：第一、他归根结底是合约，也就是平时我们所说的合同。第二、他是智能的，智能则主要表现在不需要人为干预的自动执行。概括起来描述，所谓区块链智能合约，是指一种在区块链网络上自动执行的合同。 以太坊智能合约以太坊作为目前最成熟的">
+<meta name="keywords" content="区块链,智能合约,以太坊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开始你的第一个区块链智能合约">
+<meta property="og:url" content="http://guange.me/2018/11/25/your-first-smart-contract/index.html">
 <meta property="og:site_name" content="全能的哥">
+<meta property="og:description" content="本文适合什么样的人 有兴趣了解区块链智能合约 有编程基础，希望可以入门区块链的开发 有做过一些区块链开发，想寻找最佳实践  什么是智能合约要了解什么是智能合约，可以从两方面来看：第一、他归根结底是合约，也就是平时我们所说的合同。第二、他是智能的，智能则主要表现在不需要人为干预的自动执行。概括起来描述，所谓区块链智能合约，是指一种在区块链网络上自动执行的合同。 以太坊智能合约以太坊作为目前最成熟的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://guange.me/2018/11/25/your-first-smart-contract/15370853334794.jpg">
+<meta property="og:image" content="http://guange.me/2018/11/25/your-first-smart-contract/15370849952573.png">
+<meta property="og:updated_time" content="2018-11-25T14:08:14.772Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="全能的哥">
+<meta name="twitter:title" content="开始你的第一个区块链智能合约">
+<meta name="twitter:description" content="本文适合什么样的人 有兴趣了解区块链智能合约 有编程基础，希望可以入门区块链的开发 有做过一些区块链开发，想寻找最佳实践  什么是智能合约要了解什么是智能合约，可以从两方面来看：第一、他归根结底是合约，也就是平时我们所说的合同。第二、他是智能的，智能则主要表现在不需要人为干预的自动执行。概括起来描述，所谓区块链智能合约，是指一种在区块链网络上自动执行的合同。 以太坊智能合约以太坊作为目前最成熟的">
+<meta name="twitter:image" content="http://guange.me/2018/11/25/your-first-smart-contract/15370853334794.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://guange.me/">
+  <link rel="canonical" href="http://guange.me/2018/11/25/your-first-smart-contract/">
 
 
 
@@ -131,7 +139,7 @@
   };
 </script>
 
-  <title>全能的哥</title>
+  <title>开始你的第一个区块链智能合约 | 全能的哥</title>
   
 
 
@@ -180,8 +188,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -218,7 +225,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -297,9 +304,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -331,10 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/25/your-first-smart-contract/" class="post-title-link" itemprop="http://guange.me/index.html">开始你的第一个区块链智能合约</a>
+          <h1 class="post-title" itemprop="name headline">开始你的第一个区块链智能合约
               
             
           </h1>
@@ -415,9 +419,7 @@
       
 
       
-        
-          
-            <img src="/2018/11/25/your-first-smart-contract/15370853334794.jpg">
+        <img src="/2018/11/25/your-first-smart-contract/15370853334794.jpg">
 <h2 id="本文适合什么样的人"><a href="#本文适合什么样的人" class="headerlink" title="本文适合什么样的人"></a>本文适合什么样的人</h2><ul>
 <li>有兴趣了解区块链智能合约</li>
 <li>有编程基础，希望可以入门区块链的开发</li>
@@ -434,8 +436,6 @@
 <p>直接从一个稍复杂的例子来讲解<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.0</span>;</span><br><span class="line">contract Ballot &#123;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Voter</span> &#123;</span></span><br><span class="line">        uint weight;</span><br><span class="line">        <span class="keyword">bool</span> voted;</span><br><span class="line">        uint8 vote;</span><br><span class="line">        address delegate;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Proposal</span> &#123;</span></span><br><span class="line">        uint voteCount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    address chairperson;</span><br><span class="line">    mapping(address =&gt; Voter) voters;</span><br><span class="line">    Proposal[] proposals;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// Create a new ballot with $(_numProposals) different proposals.</span></span><br><span class="line">    <span class="function">function <span class="title">Ballot</span><span class="params">(uint8 _numProposals)</span> <span class="keyword">public</span> </span>&#123;</span><br><span class="line">        chairperson = msg.sender;</span><br><span class="line">        voters[chairperson].weight = <span class="number">1</span>;</span><br><span class="line">        proposals.length = _numProposals;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// Give $(toVoter) the right to vote on this ballot.</span></span><br><span class="line">    <span class="comment">/// May only be called by $(chairperson).</span></span><br><span class="line">    <span class="function">function <span class="title">giveRightToVote</span><span class="params">(address toVoter)</span> <span class="keyword">public</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (msg.sender != chairperson || voters[toVoter].voted) <span class="keyword">return</span>;</span><br><span class="line">        voters[toVoter].weight = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// Delegate your vote to the voter $(to).</span></span><br><span class="line">    <span class="function">function <span class="title">delegate</span><span class="params">(address to)</span> <span class="keyword">public</span> </span>&#123;</span><br><span class="line">        Voter storage sender = voters[msg.sender]; <span class="comment">// assigns reference</span></span><br><span class="line">        <span class="keyword">if</span> (sender.voted) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">while</span> (voters[to].delegate != address(<span class="number">0</span>) &amp;&amp; voters[to].delegate != msg.sender)</span><br><span class="line">            to = voters[to].delegate;</span><br><span class="line">        <span class="keyword">if</span> (to == msg.sender) <span class="keyword">return</span>;</span><br><span class="line">        sender.voted = <span class="literal">true</span>;</span><br><span class="line">        sender.delegate = to;</span><br><span class="line">        Voter storage delegateTo = voters[to];</span><br><span class="line">        <span class="keyword">if</span> (delegateTo.voted)</span><br><span class="line">            proposals[delegateTo.vote].voteCount += sender.weight;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            delegateTo.weight += sender.weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// Give a single vote to proposal $(toProposal).</span></span><br><span class="line">    <span class="function">function <span class="title">vote</span><span class="params">(uint8 toProposal)</span> <span class="keyword">public</span> </span>&#123;</span><br><span class="line">        Voter storage sender = voters[msg.sender];</span><br><span class="line">        <span class="keyword">if</span> (sender.voted || toProposal &gt;= proposals.length) <span class="keyword">return</span>;</span><br><span class="line">        sender.voted = <span class="literal">true</span>;</span><br><span class="line">        sender.vote = toProposal;</span><br><span class="line">        proposals[toProposal].voteCount += sender.weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">function <span class="title">winningProposal</span><span class="params">()</span> <span class="keyword">public</span> constant <span class="title">returns</span> <span class="params">(uint8 _winningProposal)</span> </span>&#123;</span><br><span class="line">        uint256 winningVoteCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (uint8 prop = <span class="number">0</span>; prop &lt; proposals.length; prop++)</span><br><span class="line">            <span class="keyword">if</span> (proposals[prop].voteCount &gt; winningVoteCount) &#123;</span><br><span class="line">                winningVoteCount = proposals[prop].voteCount;</span><br><span class="line">                _winningProposal = prop;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="动手一步步开发智能合约"><a href="#动手一步步开发智能合约" class="headerlink" title="动手一步步开发智能合约"></a>动手一步步开发智能合约</h2><h2 id="合约的部署"><a href="#合约的部署" class="headerlink" title="合约的部署"></a>合约的部署</h2><h2 id="合约的安全"><a href="#合约的安全" class="headerlink" title="合约的安全"></a>合约的安全</h2><p>因为合约的不可篡改性，一旦被黑客发现可利用的bug，连开发者自己也无法阻止其运行，那么可能会造成重大损失。</p>
 <h2 id="真实世界的智能合约案例"><a href="#真实世界的智能合约案例" class="headerlink" title="真实世界的智能合约案例"></a>真实世界的智能合约案例</h2><h2 id="接下来该作什么？"><a href="#接下来该作什么？" class="headerlink" title="接下来该作什么？"></a>接下来该作什么？</h2>
-          
-        
       
     </div>
 
@@ -456,14 +456,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/区块链/" rel="tag"># 区块链</a>
+          
+            <a href="/tags/智能合约/" rel="tag"># 智能合约</a>
+          
+            <a href="/tags/以太坊/" rel="tag"># 以太坊</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -473,14 +483,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -501,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -576,6 +596,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本文适合什么样的人"><span class="nav-number">1.</span> <span class="nav-text">本文适合什么样的人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是智能合约"><span class="nav-number">2.</span> <span class="nav-text">什么是智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊智能合约"><span class="nav-number">3.</span> <span class="nav-text">以太坊智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solidity语言1分钟介绍"><span class="nav-number">4.</span> <span class="nav-text">solidity语言1分钟介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动手一步步开发智能合约"><span class="nav-number">5.</span> <span class="nav-text">动手一步步开发智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约的部署"><span class="nav-number">6.</span> <span class="nav-text">合约的部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合约的安全"><span class="nav-number">7.</span> <span class="nav-text">合约的安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#真实世界的智能合约案例"><span class="nav-number">8.</span> <span class="nav-text">真实世界的智能合约案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接下来该作什么？"><span class="nav-number">9.</span> <span class="nav-text">接下来该作什么？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -705,6 +741,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
 
   
 
