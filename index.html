@@ -252,6 +252,23 @@
         
         
           
+          <li class="menu-item menu-item-bigdata">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/电商大数据" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>电商大数据</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -445,6 +462,450 @@
 <h3 id="抓取数据至json文件存档"><a href="#抓取数据至json文件存档" class="headerlink" title="抓取数据至json文件存档"></a>抓取数据至json文件存档</h3><p><code>scrapy crawl dangdang -o output.json</code></p>
 <p><img src="http://pkl6fbp39.bkt.clouddn.com/15460884381322.png" alt=""></p>
 <p>这样我们就将数据采集到json文件了</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://guange.me/2018/12/31/bigdata3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="光哥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="全能的哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/31/bigdata3/" class="post-title-link" itemprop="http://guange.me/index.html">3. 数据存储</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-31 21:32:10 / 修改时间：14:08:24" itemprop="dateCreated datePublished" datetime="2018-12-31T21:32:10+08:00">2018-12-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/电商大数据/" itemprop="url" rel="index"><span itemprop="name">电商大数据</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="3-数据存储"><a href="#3-数据存储" class="headerlink" title="3. 数据存储"></a>3. 数据存储</h1><h2 id="数据仓库"><a href="#数据仓库" class="headerlink" title="数据仓库"></a>数据仓库</h2><p>目前采用的方案为 <code>hadoop</code>+<code>hive</code></p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>数据清洗后，目前的数据格式为csv</p>
+<p><img src="http://pkl6fbp39.bkt.clouddn.com/15462288457240.jpg" alt="-w1174"></p>
+<h2 id="数据导入"><a href="#数据导入" class="headerlink" title="数据导入"></a>数据导入</h2><ol>
+<li>创建数据表<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create table products</span><br><span class="line">(id int, author string,comment_num int,detail string,img string,price float,publisher string,pubtime string,title string,url string) </span><br><span class="line">ROW FORMAT DELIMITED </span><br><span class="line">FIELDS TERMINATED BY &apos;,&apos; </span><br><span class="line">STORED AS TEXTFILE;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://pkl6fbp39.bkt.clouddn.com/15462329044729.jpg" alt="-w1279"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; desc products1;</span><br><span class="line">OK</span><br><span class="line">id                  	int</span><br><span class="line">author              	string</span><br><span class="line">comment_num         	int</span><br><span class="line">detail              	string</span><br><span class="line">img                 	string</span><br><span class="line">price               	float</span><br><span class="line">publisher           	string</span><br><span class="line">pubtime             	string</span><br><span class="line">title               	string</span><br><span class="line">url                 	string</span><br><span class="line">Time taken: 0.072 seconds, Fetched: 10 row(s)</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>导入csv<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data local inpath &apos;/tmp/data.csv&apos; into table products;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://pkl6fbp39.bkt.clouddn.com/15462315552797.jpg" alt="-w1279"><br>导入数据完成，后面可以用spark进行分析和计算</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://guange.me/2018/12/31/bigdata2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="光哥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="全能的哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/31/bigdata2/" class="post-title-link" itemprop="http://guange.me/index.html">2. 数据清洗</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-31 21:32:10 / 修改时间：14:07:53" itemprop="dateCreated datePublished" datetime="2018-12-31T21:32:10+08:00">2018-12-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/电商大数据/" itemprop="url" rel="index"><span itemprop="name">电商大数据</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="2-数据清洗"><a href="#2-数据清洗" class="headerlink" title="2. 数据清洗"></a>2. 数据清洗</h1><h2 id="清洗缺失数据"><a href="#清洗缺失数据" class="headerlink" title="清洗缺失数据"></a>清洗缺失数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment">#导入我们爬过来的数据</span></span><br><span class="line">df = pd.read_json(<span class="string">'seeds/output.json'</span>)</span><br><span class="line">df.info() <span class="comment">#查看状态</span></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+RangeIndex: 6000 entries, 0 to 5999
+Data columns (total 9 columns):
+author         4744 non-null object
+comment_num    6000 non-null object
+detail         2845 non-null object
+img            6000 non-null object
+price          5677 non-null object
+publisher      4734 non-null object
+pubtime        4705 non-null object
+title          6000 non-null object
+url            6000 non-null object
+dtypes: object(9)
+memory usage: 422.0+ KB
+</code></pre><p>可以看到，总数据条数为6000条，其实多少都有缺失，价格为空的有6000-5677=323条<br>现在查看一下没有价格的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df.price.isnull()]</span><br></pre></td></tr></table></figure>
+<div><br><style scoped><br>    .dataframe tbody tr th:only-of-type {<br>        vertical-align: middle;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br><br>    .dataframe thead th {<br>        text-align: right;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>author</th><br>      <th>comment_num</th><br>      <th>detail</th><br>      <th>img</th><br>      <th>price</th><br>      <th>publisher</th><br>      <th>pubtime</th><br>      <th>title</th><br>      <th>url</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>30</th><br>      <td>（英） 维克托·迈尔-舍恩伯格,肯尼思·库克耶（Kenneth Cukier）</td><br>      <td>185条评论</td><br>      <td>推荐：大卫芬雷布（David Feinleib）《大数据云图：如何在大数据时代寻找下一个大机…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>浙江人民出版社</td><br>      <td>/2013-01-01</td><br>      <td>大数据时代：生活、工作与思维的大变革</td><br>      <td><a href="http://product.dangdang.com/1900767314.html" target="_blank" rel="noopener">http://product.dangdang.com/1900767314.html</a></td><br>    </tr><br>    <tr><br>      <th>134</th><br>      <td>朱洁</td><br>      <td>53条评论</td><br>      <td>这是一个数据信息时代，每分每秒都在产生数不尽的数据。这些数据如何获取，有什么用途，如何与前沿…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>电子工业出版社</td><br>      <td>/2016-10-01</td><br>      <td>大数据架构详解：从数据获取到深度学习</td><br>      <td><a href="http://product.dangdang.com/1900708688.html" target="_blank" rel="noopener">http://product.dangdang.com/1900708688.html</a></td><br>    </tr><br>    <tr><br>      <th>154</th><br>      <td>董西成</td><br>      <td>14条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2018-01-01</td><br>      <td>大数据技术体系详解：原理、架构与实践</td><br>      <td><a href="http://product.dangdang.com/1900849692.html" target="_blank" rel="noopener">http://product.dangdang.com/1900849692.html</a></td><br>    </tr><br>    <tr><br>      <th>183</th><br>      <td>涂子沛</td><br>      <td>34条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>广西师范大学出版社</td><br>      <td>/2015-04-01</td><br>      <td>大数据（2.0）</td><br>      <td><a href="http://product.dangdang.com/1900546581.html" target="_blank" rel="noopener">http://product.dangdang.com/1900546581.html</a></td><br>    </tr><br>    <tr><br>      <th>185</th><br>      <td>张孝昆</td><br>      <td>14条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2017-05-01</td><br>      <td>大数据风控</td><br>      <td><a href="http://product.dangdang.com/1900685060.html" target="_blank" rel="noopener">http://product.dangdang.com/1900685060.html</a></td><br>    </tr><br>    <tr><br>      <th>190</th><br>      <td>（德）伊夫·希尔皮斯科,（美）严玉星,（匈牙利）盖尔盖伊 等</td><br>      <td>0条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>人民邮电出版社</td><br>      <td>/2017-01-01</td><br>      <td>金融大数据分析从认知到实践(第1辑)(套装共3册)</td><br>      <td><a href="http://product.dangdang.com/1900974300.html" target="_blank" rel="noopener">http://product.dangdang.com/1900974300.html</a></td><br>    </tr><br>    <tr><br>      <th>200</th><br>      <td>杨轶莘</td><br>      <td>14条评论</td><br>      <td>5大统计学专业方向/65个统计学知识/50个经典的统计学案例 教会你如何说服别人Believ…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>电子工业出版社</td><br>      <td>/2015-09-01</td><br>      <td>大数据时代下的统计学</td><br>      <td><a href="http://product.dangdang.com/1900724130.html" target="_blank" rel="noopener">http://product.dangdang.com/1900724130.html</a></td><br>    </tr><br>    <tr><br>      <th>213</th><br>      <td>赵伟</td><br>      <td>4258条评论</td><br>      <td>◆大数据让奥巴马当选美国总统，让马云、马化腾、李彦宏成就其帝国，让《纸牌屋》在全世界热播，让…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>江苏文艺出版社</td><br>      <td>/2014-06-01</td><br>      <td>大数据在中国</td><br>      <td><a href="http://product.dangdang.com/1900338885.html" target="_blank" rel="noopener">http://product.dangdang.com/1900338885.html</a></td><br>    </tr><br>    <tr><br>      <th>236</th><br>      <td>赵刚</td><br>      <td>1条评论</td><br>      <td>1、赵刚博士在信息化领域耕耘10余年，对大数据的认识深刻且系统。 2、阐述的视角放在了大数据…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>电子工业出版社</td><br>      <td>/2016-06-01</td><br>      <td>大数据：技术与应用实践指南(第2版)</td><br>      <td><a href="http://product.dangdang.com/1900777795.html" target="_blank" rel="noopener">http://product.dangdang.com/1900777795.html</a></td><br>    </tr><br>    <tr><br>      <th>237</th><br>      <td>黄申</td><br>      <td>20条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2017-06-01</td><br>      <td>大数据架构和算法实现之路：电商系统的技术实战</td><br>      <td><a href="http://product.dangdang.com/1900688098.html" target="_blank" rel="noopener">http://product.dangdang.com/1900688098.html</a></td><br>    </tr><br>    <tr><br>      <th>242</th><br>      <td>黄申</td><br>      <td>23条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2016-05-01</td><br>      <td>大数据架构商业之路：从业务需求到技术方案</td><br>      <td><a href="http://product.dangdang.com/1900556786.html" target="_blank" rel="noopener">http://product.dangdang.com/1900556786.html</a></td><br>    </tr><br>    <tr><br>      <th>250</th><br>      <td>IT架构设计研究组</td><br>      <td>18条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>电子工业出版社</td><br>      <td>/2014-04-01</td><br>      <td>大数据时代的IT架构设计</td><br>      <td><a href="http://product.dangdang.com/1900450643.html" target="_blank" rel="noopener">http://product.dangdang.com/1900450643.html</a></td><br>    </tr><br>    <tr><br>      <th>253</th><br>      <td>刘驰 等</td><br>      <td>4条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2017-08-01</td><br>      <td>大数据治理与安全：从理论到开源实践</td><br>      <td><a href="http://product.dangdang.com/1900728598.html" target="_blank" rel="noopener">http://product.dangdang.com/1900728598.html</a></td><br>    </tr><br>    <tr><br>      <th>255</th><br>      <td>毕然</td><br>      <td>11条评论</td><br>      <td>本书用轻松话语讲述一线数据分析技术，既有统计方法与分析技巧，更有奇闻趣事和哲学感悟，为你的数…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>电子工业出版社</td><br>      <td>/2016-08-01</td><br>      <td>大数据分析的道与术</td><br>      <td><a href="http://product.dangdang.com/1900648437.html" target="_blank" rel="noopener">http://product.dangdang.com/1900648437.html</a></td><br>    </tr><br>    <tr><br>      <th>256</th><br>      <td>（美） 艾伯特－拉斯洛·巴拉巴西</td><br>      <td>20条评论</td><br>      <td>◆ 巴拉巴西是复杂性科学*负盛名的国际领军人物，他通过这本书向大家传递了一整套理解人类行为时…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>北京联合出版有限公司</td><br>      <td>/2017-06-01</td><br>      <td>爆发：大数据时代预见未来的新思维(经典版)</td><br>      <td><a href="http://product.dangdang.com/1900991349.html" target="_blank" rel="noopener">http://product.dangdang.com/1900991349.html</a></td><br>    </tr><br>    <tr><br>      <th>261</th><br>      <td>刘星</td><br>      <td>3条评论</td><br>      <td>1.大数据时代的到来，使得营销数据的取得由片面的拓展成全面的，由统计级的变成在线的。2013…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>人民邮电出版社</td><br>      <td>/2016-11-07</td><br>      <td>大数据 精细化销售管理、数据分析与预测(互联网+时代企业管理实战系列)</td><br>      <td><a href="http://product.dangdang.com/1900783630.html" target="_blank" rel="noopener">http://product.dangdang.com/1900783630.html</a></td><br>    </tr><br>    <tr><br>      <th>277</th><br>      <td>陈春宝,阙子扬,钟飞</td><br>      <td>10条评论</td><br>      <td>（1）从数据、基础平台、分析方法、行业应用4个维度，义场景化方式讲解数据从获取、预处理、挖掘…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2017-01-01</td><br>      <td>大数据与机器学习：实践方法与行业案例</td><br>      <td><a href="http://product.dangdang.com/1900655025.html" target="_blank" rel="noopener">http://product.dangdang.com/1900655025.html</a></td><br>    </tr><br>    <tr><br>      <th>296</th><br>      <td>井底望天,武源文,赵国栋,刘文献</td><br>      <td>87条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>人民邮电出版社</td><br>      <td>/2017-06-01</td><br>      <td>区块链与大数据：打造智能经济</td><br>      <td><a href="http://product.dangdang.com/1900784646.html" target="_blank" rel="noopener">http://product.dangdang.com/1900784646.html</a></td><br>    </tr><br>    <tr><br>      <th>302</th><br>      <td>《大数据领导干部读本》编写组</td><br>      <td>30条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>人民出版社</td><br>      <td>/2015-09-01</td><br>      <td>大数据领导干部读本</td><br>      <td><a href="http://product.dangdang.com/1900510844.html" target="_blank" rel="noopener">http://product.dangdang.com/1900510844.html</a></td><br>    </tr><br>    <tr><br>      <th>305</th><br>      <td>杨巨龙</td><br>      <td>3条评论</td><br>      <td>特别推荐： 自己动手写 CPU( 含 CD 光盘 1 张 ) Java 特种兵（上册）（含 …</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>电子工业出版社</td><br>      <td>/2014-03-01</td><br>      <td>大数据技术全解：基础、设计、开发与实践</td><br>      <td><a href="http://product.dangdang.com/1900717066.html" target="_blank" rel="noopener">http://product.dangdang.com/1900717066.html</a></td><br>    </tr><br>    <tr><br>      <th>306</th><br>      <td>徐曼,沈江,余海燕</td><br>      <td>11条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2017-02-01</td><br>      <td>大数据医疗</td><br>      <td><a href="http://product.dangdang.com/1900672336.html" target="_blank" rel="noopener">http://product.dangdang.com/1900672336.html</a></td><br>    </tr><br>    <tr><br>      <th>312</th><br>      <td>蔡治,刘志彬,张伟</td><br>      <td>30条评论</td><br>      <td>本书从人力资源管理人员的视角出发，以轻松诙谐的人物对话为载体，将概率统计、机器学习、文本挖掘…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2016-11-01</td><br>      <td>大数据时代的人力资源管理</td><br>      <td><a href="http://product.dangdang.com/1900682798.html" target="_blank" rel="noopener">http://product.dangdang.com/1900682798.html</a></td><br>    </tr><br>    <tr><br>      <th>315</th><br>      <td>吕兆星</td><br>      <td>20条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2017-05-01</td><br>      <td>企业大数据系统构建实战：技术、架构、实施与应用</td><br>      <td><a href="http://product.dangdang.com/1900685058.html" target="_blank" rel="noopener">http://product.dangdang.com/1900685058.html</a></td><br>    </tr><br>    <tr><br>      <th>318</th><br>      <td>梁栋,张兆静,彭木根</td><br>      <td>4条评论</td><br>      <td>随着移动互联网和物联网时代的来临，人和万事万物被广泛地联系在一起。人们在联系的过程产生了大量…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2017-11-01</td><br>      <td>大数据、数据挖掘与智慧运营</td><br>      <td><a href="http://product.dangdang.com/1900781436.html" target="_blank" rel="noopener">http://product.dangdang.com/1900781436.html</a></td><br>    </tr><br>    <tr><br>      <th>319</th><br>      <td>黄颖,庞晓龙,李天阳</td><br>      <td>119条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>北方文艺出版社</td><br>      <td>/2015-01-01</td><br>      <td>大数据时代必读书系(一本书读懂大数据+一本书读懂互联网思维+一本书读懂互联网+一本书读懂互…</td><br>      <td><a href="http://product.dangdang.com/1900755145.html" target="_blank" rel="noopener">http://product.dangdang.com/1900755145.html</a></td><br>    </tr><br>    <tr><br>      <th>324</th><br>      <td>涂子沛</td><br>      <td>124条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>广西师范大学出版社</td><br>      <td>/2015-04-01</td><br>      <td>大数据：正在到来的数据革命，以及它如何改变政府、商业与我们的生活(3.0升级版)</td><br>      <td><a href="http://product.dangdang.com/1900545089.html" target="_blank" rel="noopener">http://product.dangdang.com/1900545089.html</a></td><br>    </tr><br>    <tr><br>      <th>327</th><br>      <td>金江军</td><br>      <td>3条评论</td><br>      <td>※ 《国家信息化发展战略纲要》《大数据产业发展规划（2016 2020年）》等大数据和数字经…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>中信出版社</td><br>      <td>/2018-06-01</td><br>      <td>大数据党政领导干部一本通</td><br>      <td><a href="http://product.dangdang.com/1901070900.html" target="_blank" rel="noopener">http://product.dangdang.com/1901070900.html</a></td><br>    </tr><br>    <tr><br>      <th>328</th><br>      <td>胡志强</td><br>      <td>6条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>电子工业出版社</td><br>      <td>/2016-03-01</td><br>      <td>大数据时代的海上指挥与控制</td><br>      <td><a href="http://product.dangdang.com/1900717244.html" target="_blank" rel="noopener">http://product.dangdang.com/1900717244.html</a></td><br>    </tr><br>    <tr><br>      <th>329</th><br>      <td>肖冠宇</td><br>      <td>24条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2017-09-01</td><br>      <td>企业大数据处理：Spark、Druid、Flume与Kafka应用实践</td><br>      <td><a href="http://product.dangdang.com/1900728593.html" target="_blank" rel="noopener">http://product.dangdang.com/1900728593.html</a></td><br>    </tr><br>    <tr><br>      <th>336</th><br>      <td>（美）麦徳奇（Dimitri Maex）,（美）保罗 B. 布朗（Paul B. Brown）</td><br>      <td>481条评论</td><br>      <td>全球数据分析**高手奥美专家告诉你如何在商业中应用大数据</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>机械工业出版社</td><br>      <td>/2014-01-01</td><br>      <td>大数据营销：定位客户</td><br>      <td><a href="http://product.dangdang.com/1900384914.html" target="_blank" rel="noopener">http://product.dangdang.com/1900384914.html</a></td><br>    </tr><br>    <tr><br>      <th>…</th><br>      <td>…</td><br>      <td>…</td><br>      <td>…</td><br>      <td>…</td><br>      <td>…</td><br>      <td>…</td><br>      <td>…</td><br>      <td>…</td><br>      <td>…</td><br>    </tr><br>    <tr><br>      <th>5576</th><br>      <td>（意）法拉利（Ferrari,A.）,（意）鲁索（Russo,M.）</td><br>      <td>26条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2015-01-01</td><br>      <td>微软Excel 2013：用PowerPivot 建立数据模型</td><br>      <td><a href="http://product.dangdang.com/1900452739.html" target="_blank" rel="noopener">http://product.dangdang.com/1900452739.html</a></td><br>    </tr><br>    <tr><br>      <th>5613</th><br>      <td>王达</td><br>      <td>8条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>华中科技大学出版社</td><br>      <td>/2011-01-01</td><br>      <td>路由器配置与管理完全手册——Cisco篇</td><br>      <td><a href="http://product.dangdang.com/1900639671.html" target="_blank" rel="noopener">http://product.dangdang.com/1900639671.html</a></td><br>    </tr><br>    <tr><br>      <th>5619</th><br>      <td>李俊民</td><br>      <td>5条评论</td><br>      <td>实例讲解，步骤详细，涵盖基础内容讲解和实际项目操作 内容细致，知识全面，适合初、中级读者学习…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2015-09-01</td><br>      <td>SQL Server数据库开发自学经典</td><br>      <td><a href="http://product.dangdang.com/1900605409.html" target="_blank" rel="noopener">http://product.dangdang.com/1900605409.html</a></td><br>    </tr><br>    <tr><br>      <th>5625</th><br>      <td>李迅,张伟</td><br>      <td>18条评论</td><br>      <td>本书帮你从看流量到看懂流量，从看数据到看懂数据，从了解访客的浏览行为到理解用户的搜索请求。</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2017-02-01</td><br>      <td>百度统计：网站数据分析实战</td><br>      <td><a href="http://product.dangdang.com/1900682861.html" target="_blank" rel="noopener">http://product.dangdang.com/1900682861.html</a></td><br>    </tr><br>    <tr><br>      <th>5650</th><br>      <td>林沛满</td><br>      <td>53条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>None</td><br>      <td>None</td><br>      <td>大咖讲Wireshark网络分析(电子书)</td><br>      <td><a href="http://product.dangdang.com/1900724053.html" target="_blank" rel="noopener">http://product.dangdang.com/1900724053.html</a></td><br>    </tr><br>    <tr><br>      <th>5660</th><br>      <td>瞿有甜</td><br>      <td>75条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>浙江大学出版社</td><br>      <td>/2010-03-01</td><br>      <td>数据库技术与应用</td><br>      <td><a href="http://product.dangdang.com/1900082641.html" target="_blank" rel="noopener">http://product.dangdang.com/1900082641.html</a></td><br>    </tr><br>    <tr><br>      <th>5663</th><br>      <td>[加] 阿利斯泰尔·克罗尔 / [加] 本杰明·尤科维奇</td><br>      <td>0条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>None</td><br>      <td>/2017-12-01</td><br>      <td>精益数据分析</td><br>      <td><a href="http://product.dangdang.com/1960196347.html" target="_blank" rel="noopener">http://product.dangdang.com/1960196347.html</a></td><br>    </tr><br>    <tr><br>      <th>5686</th><br>      <td>（美）史蒂夫 麦觉理（Steve McQuerry）,大卫 简森（David Jansen）</td><br>      <td>5条评论</td><br>      <td>《Cisco局域网交换机配置手册（第2版 修订版）》讲解了Cisco Catalyst交换机…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>人民邮电出版社</td><br>      <td>/2015-02-01</td><br>      <td>Cisco局域网交换机配置手册(第2版 修订版)</td><br>      <td><a href="http://product.dangdang.com/1900702570.html" target="_blank" rel="noopener">http://product.dangdang.com/1900702570.html</a></td><br>    </tr><br>    <tr><br>      <th>5687</th><br>      <td>叶龙</td><br>      <td>12条评论</td><br>      <td>数据的全新思维，如何借力，造优秀媒体运营体系？ 6组用户增长数据、4组图文分析数据、5组用户…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2017-08-01</td><br>      <td>微信公众号运营：粉丝及平台数据分析和营销</td><br>      <td><a href="http://product.dangdang.com/1900767206.html" target="_blank" rel="noopener">http://product.dangdang.com/1900767206.html</a></td><br>    </tr><br>    <tr><br>      <th>5691</th><br>      <td>王竹立</td><br>      <td>11条评论</td><br>      <td>★本书跟一般教育科技书籍不一样的地方，就是作者从切身经验出发，兼具理性与感性，对很多教育现象…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>电子工业出版社</td><br>      <td>/2015-03-01</td><br>      <td>碎片与重构：互联网思维重塑大教育</td><br>      <td><a href="http://product.dangdang.com/1900724116.html" target="_blank" rel="noopener">http://product.dangdang.com/1900724116.html</a></td><br>    </tr><br>    <tr><br>      <th>5700</th><br>      <td>阎红灿</td><br>      <td>12条评论</td><br>      <td>导语_点评_推荐词</td><br>      <td><a href="http://img3m4.ddimg.cn/38/23/1900605404-1_b_2.jpg" target="_blank" rel="noopener">http://img3m4.ddimg.cn/38/23/1900605404-1_b_2.jpg</a></td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2015-12-01</td><br>      <td>本体建模与语义Web知识发现</td><br>      <td><a href="http://product.dangdang.com/1900605404.html" target="_blank" rel="noopener">http://product.dangdang.com/1900605404.html</a></td><br>    </tr><br>    <tr><br>      <th>5729</th><br>      <td>王英英,夏毓彦</td><br>      <td>13条评论</td><br>      <td>赠送配套源码、课件、视频下载地址（注意数字和字母大小写）如下：<a href="http://pan.baid.." target="_blank" rel="noopener">http://pan.baid..</a>.</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2016-11-01</td><br>      <td>SQL Server 2014从零开始学(视频教学版)</td><br>      <td><a href="http://product.dangdang.com/1900678284.html" target="_blank" rel="noopener">http://product.dangdang.com/1900678284.html</a></td><br>    </tr><br>    <tr><br>      <th>5732</th><br>      <td>袁梅宇</td><br>      <td>17条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2014-07-01</td><br>      <td>数据挖掘与机器学习——WEKA应用技术与实践</td><br>      <td><a href="http://product.dangdang.com/1900591352.html" target="_blank" rel="noopener">http://product.dangdang.com/1900591352.html</a></td><br>    </tr><br>    <tr><br>      <th>5735</th><br>      <td>郝阜平</td><br>      <td>53条评论</td><br>      <td>本书以组建和维护小型局域网为主线，面向实际工程应用，按照项目化课程模式的要求组织编排。</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>浙江大学出版社</td><br>      <td>/2009-08-01</td><br>      <td>小型局域网组建与维护</td><br>      <td><a href="http://product.dangdang.com/1900025496.html" target="_blank" rel="noopener">http://product.dangdang.com/1900025496.html</a></td><br>    </tr><br>    <tr><br>      <th>5751</th><br>      <td>肖炳军,范明,马利燕</td><br>      <td>9条评论</td><br>      <td>学员心声 本书是零基础学习透视表的红宝书，这是真实体验，因为我就是那枚小菜鸟，这不是吹嘘，每…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2016-09-01</td><br>      <td>职场菜鸟12天玩爆数据透视表</td><br>      <td><a href="http://product.dangdang.com/1900655453.html" target="_blank" rel="noopener">http://product.dangdang.com/1900655453.html</a></td><br>    </tr><br>    <tr><br>      <th>5755</th><br>      <td>段宇锋,李伟伟,熊泽泉</td><br>      <td>5条评论</td><br>      <td>《R语言与数据可视化》由华东师范大学出版社出版。</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>华东师范大学出版社</td><br>      <td>/2017-10-01</td><br>      <td>R语言与数据可视化</td><br>      <td><a href="http://product.dangdang.com/1900777868.html" target="_blank" rel="noopener">http://product.dangdang.com/1900777868.html</a></td><br>    </tr><br>    <tr><br>      <th>5783</th><br>      <td>郎为民</td><br>      <td>32条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>人民邮电出版社</td><br>      <td>/2011-01-01</td><br>      <td>大话物联网</td><br>      <td><a href="http://product.dangdang.com/1900470888.html" target="_blank" rel="noopener">http://product.dangdang.com/1900470888.html</a></td><br>    </tr><br>    <tr><br>      <th>5818</th><br>      <td>圣才电子书</td><br>      <td>0条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>圣才电子书</td><br>      <td>/2017-11-08</td><br>      <td>南开大学统计与数据科学学院432统计学[专业硕士]历年考研真题汇编</td><br>      <td><a href="http://product.dangdang.com/1900779552.html" target="_blank" rel="noopener">http://product.dangdang.com/1900779552.html</a></td><br>    </tr><br>    <tr><br>      <th>5856</th><br>      <td>中共宁夏回族自治区委党校,宁夏回族自治区统计局</td><br>      <td>0条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>阳光出版社</td><br>      <td>/2010-10-01</td><br>      <td>深入实施西部大开发战略专题数据手册</td><br>      <td><a href="http://product.dangdang.com/1900466796.html" target="_blank" rel="noopener">http://product.dangdang.com/1900466796.html</a></td><br>    </tr><br>    <tr><br>      <th>5859</th><br>      <td>王燃,刘晶</td><br>      <td>8条评论</td><br>      <td>本书是 大数据王 的首部个人专著。大数据时代是充满无限生机的时代，也是一切都有可能的时代。本…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2017-01-01</td><br>      <td>管理会计那点事儿——用数据支撑决策</td><br>      <td><a href="http://product.dangdang.com/1900682863.html" target="_blank" rel="noopener">http://product.dangdang.com/1900682863.html</a></td><br>    </tr><br>    <tr><br>      <th>5860</th><br>      <td>圣才电子书</td><br>      <td>0条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>圣才电子书</td><br>      <td>/2017-09-30</td><br>      <td>南昌大学信息工程学院838数据结构历年考研真题汇编</td><br>      <td><a href="http://product.dangdang.com/1900779925.html" target="_blank" rel="noopener">http://product.dangdang.com/1900779925.html</a></td><br>    </tr><br>    <tr><br>      <th>5862</th><br>      <td>王雷,魏焕新,聂清彬</td><br>      <td>9条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>北京理工大学出版社</td><br>      <td>/2016-02-28</td><br>      <td>计算机网络原理基础教程</td><br>      <td><a href="http://product.dangdang.com/1900637868.html" target="_blank" rel="noopener">http://product.dangdang.com/1900637868.html</a></td><br>    </tr><br>    <tr><br>      <th>5870</th><br>      <td>傅民杰 主编</td><br>      <td>0条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>青苹果数据中心</td><br>      <td>/2017-09-27</td><br>      <td>21世纪大震撼权威经典(套装共10册)(上)</td><br>      <td><a href="http://product.dangdang.com/1901081585.html" target="_blank" rel="noopener">http://product.dangdang.com/1901081585.html</a></td><br>    </tr><br>    <tr><br>      <th>5873</th><br>      <td>任明</td><br>      <td>31条评论</td><br>      <td>1993年，三金工程开启了我国国民经济的信息化进程。</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>浙江大学出版社</td><br>      <td>/2012-03-01</td><br>      <td>智能信息系统——以关联知识优化数据建模的方法和实践</td><br>      <td><a href="http://product.dangdang.com/1900292746.html" target="_blank" rel="noopener">http://product.dangdang.com/1900292746.html</a></td><br>    </tr><br>    <tr><br>      <th>5929</th><br>      <td>圣才电子书</td><br>      <td>0条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>圣才电子书</td><br>      <td>/2018-08-10</td><br>      <td>南京航空航天大学计算机科学与技术学院922数据结构与操作系统（专业学位）历年考研真题汇编</td><br>      <td><a href="http://product.dangdang.com/1901081815.html" target="_blank" rel="noopener">http://product.dangdang.com/1901081815.html</a></td><br>    </tr><br>    <tr><br>      <th>5942</th><br>      <td>陈晶</td><br>      <td>1条评论</td><br>      <td>None</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2018-01-01</td><br>      <td>自媒体2.0：网络直播“星”力量</td><br>      <td><a href="http://product.dangdang.com/1900981601.html" target="_blank" rel="noopener">http://product.dangdang.com/1900981601.html</a></td><br>    </tr><br>    <tr><br>      <th>5947</th><br>      <td>车云月,杨静华</td><br>      <td>8条评论</td><br>      <td>揭秘网站运营本质和策略解析数据驱动运营的奥秘多行业经典案列深剖析分享真实的网站运营技巧</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2017-04-01</td><br>      <td>数据化网站运营深度剖析</td><br>      <td><a href="http://product.dangdang.com/1900699416.html" target="_blank" rel="noopener">http://product.dangdang.com/1900699416.html</a></td><br>    </tr><br>    <tr><br>      <th>5952</th><br>      <td>黄崑,白雅楠</td><br>      <td>2条评论</td><br>      <td>《Access数据库基础与应用》介绍了数据库原理与应用的基础知识；选取Access2010版…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2014-08-01</td><br>      <td>Access数据库基础与应用</td><br>      <td><a href="http://product.dangdang.com/1900376789.html" target="_blank" rel="noopener">http://product.dangdang.com/1900376789.html</a></td><br>    </tr><br>    <tr><br>      <th>5967</th><br>      <td>梁丰</td><br>      <td>5条评论</td><br>      <td>《数据通信与计算机网络(第2版)》由梁丰主编，本书是一本针对应用型本科学生的教材，面向通信工…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>浙江大学出版社</td><br>      <td>/2012-11-15</td><br>      <td>数据通信与计算机网络</td><br>      <td><a href="http://product.dangdang.com/1900669993.html" target="_blank" rel="noopener">http://product.dangdang.com/1900669993.html</a></td><br>    </tr><br>    <tr><br>      <th>5974</th><br>      <td>李华峰</td><br>      <td>2条评论</td><br>      <td>Nmap是目前非常受关注的网络安全审计技术工具，是绝大多数从事网络安全人员的必备工具。本书由…</td><br>      <td>images/model/guan/url_none.png</td><br>      <td>None</td><br>      <td>清华大学出版社</td><br>      <td>/2017-09-01</td><br>      <td>诸神之眼——Nmap网络安全审计技术揭秘</td><br>      <td><a href="http://product.dangdang.com/1900767180.html" target="_blank" rel="noopener">http://product.dangdang.com/1900767180.html</a></td><br>    </tr><br>  </tbody><br></table><br><p>323 rows × 9 columns</p><br></div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#清洗掉价格为空的数据</span></span><br><span class="line">df.dropna(subset=[<span class="string">'price'</span>]).info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+Int64Index: 5677 entries, 0 to 5999
+Data columns (total 9 columns):
+author         4421 non-null object
+comment_num    5677 non-null object
+detail         2668 non-null object
+img            5677 non-null object
+price          5677 non-null object
+publisher      4414 non-null object
+pubtime        4389 non-null object
+title          5677 non-null object
+url            5677 non-null object
+dtypes: object(9)
+memory usage: 443.5+ KB
+</code></pre><h2 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h2><p>出版时间为  /2014-08-01 ，我们将其格式化为有效的时间</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'pubtime'</span>].head()</span><br></pre></td></tr></table></figure>
+<pre><code>0     /2017-07-01
+1     /2013-01-01
+2     /2016-10-01
+3     /2017-02-20
+4     /2014-09-01
+Name: pubtime, dtype: object
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_time</span><span class="params">(val)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> val:</span><br><span class="line">        vs = val.split(<span class="string">'/'</span>)</span><br><span class="line">        <span class="keyword">if</span> len(vs)==<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> vs[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">pubtime = df[<span class="string">'pubtime'</span>].apply(parse_time)</span><br><span class="line">pubtime.head()</span><br></pre></td></tr></table></figure>
+<pre><code>0    2017-07-01
+1    2013-01-01
+2    2016-10-01
+3    2017-02-20
+4    2014-09-01
+Name: pubtime, dtype: object
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'pubtime'</span>]=pd.to_datetime(pubtime, format=<span class="string">'%Y-%m-%d'</span>, errors=<span class="string">'ignore'</span>)</span><br><span class="line">df[<span class="string">'pubtime'</span>].head()</span><br></pre></td></tr></table></figure>
+<pre><code>0   2017-07-01
+1   2013-01-01
+2   2016-10-01
+3   2017-02-20
+4   2014-09-01
+Name: pubtime, dtype: datetime64[ns]
+</code></pre><h2 id="价格和评论数据处理"><a href="#价格和评论数据处理" class="headerlink" title="价格和评论数据处理"></a>价格和评论数据处理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.price.head()</span><br></pre></td></tr></table></figure>
+<pre><code>0    ¥62.40
+1    ¥34.40
+2    ¥54.50
+3    ¥39.30
+4    ¥31.00
+Name: price, dtype: object
+</code></pre><p>价格的前面多了一个¥, 类型也为object,我们转化为float才好统计</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_price</span><span class="params">(val)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> val <span class="keyword">and</span> type(val)==<span class="string">'str'</span>:</span><br><span class="line">        vs = val.split(<span class="string">'¥'</span>)</span><br><span class="line">        <span class="keyword">if</span> len(vs)==<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> vs[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">    </span><br><span class="line">df[<span class="string">'price'</span>] = df.price.apply(parse_price).astype(<span class="string">'float'</span>)</span><br><span class="line">df[<span class="string">'price'</span>].head()</span><br></pre></td></tr></table></figure>
+<pre><code>0    62.4
+1    34.4
+2    54.5
+3    39.3
+4    31.0
+Name: price, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 评论处理</span></span><br><span class="line">df[<span class="string">'comment_num'</span>].head()</span><br></pre></td></tr></table></figure>
+<pre><code>0      5378条评论
+1    176251条评论
+2      5471条评论
+3      3544条评论
+4      6978条评论
+Name: comment_num, dtype: object
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改为整形数据</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_comment</span><span class="params">(val)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> val <span class="keyword">and</span> type(val)==<span class="string">'str'</span>:</span><br><span class="line">        vs = val.split(<span class="string">'条'</span>)</span><br><span class="line">        <span class="keyword">if</span> len(vs)==<span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> vs[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">    </span><br><span class="line">df[<span class="string">'comment_num'</span>] = df.price.apply(parse_comment).astype(<span class="string">'int'</span>)</span><br><span class="line">df[<span class="string">'comment_num'</span>].head()</span><br></pre></td></tr></table></figure>
+<pre><code>0    62
+1    34
+2    54
+3    39
+4    31
+Name: comment_num, dtype: int64
+</code></pre><h2 id="异常数据处理"><a href="#异常数据处理" class="headerlink" title="异常数据处理"></a>异常数据处理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过价格图表我们可以发现异常价格</span></span><br><span class="line">df[<span class="string">'price'</span>].plot(kind=<span class="string">'line'</span>,figsize=(<span class="number">20</span>,<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f5949bd8be0&gt;
+</code></pre><p><img src="http://pkl6fbp39.bkt.clouddn.com/output_17_1.png" alt="output_17_1"></p>
+<p>从上图可以发现，有个别商品的价格特别突出，在1000元以上，我们把这些数据过滤掉</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = df[df[<span class="string">'price'</span>]&lt;<span class="number">1000</span>]</span><br><span class="line">df.info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+Int64Index: 5995 entries, 0 to 5999
+Data columns (total 9 columns):
+author         4741 non-null object
+comment_num    5995 non-null int64
+detail         2845 non-null object
+img            5995 non-null object
+price          5995 non-null float64
+publisher      4731 non-null object
+pubtime        4672 non-null datetime64[ns]
+title          5995 non-null object
+url            5995 non-null object
+dtypes: datetime64[ns](1), float64(1), int64(1), object(6)
+memory usage: 468.4+ KB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#评论数据直方图</span></span><br><span class="line">df.comment_num.plot.hist()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f59499d9cc0&gt;
+</code></pre><p><img src="http://pkl6fbp39.bkt.clouddn.com/output_20_1.png" alt="output_20_1"></p>
+<p>从直方图可以看出，评论数据比较规整，都在0-100范围的评论数为绝大多数</p>
+<h2 id="清洗完比"><a href="#清洗完比" class="headerlink" title="清洗完比"></a>清洗完比</h2><p>清洗完后的数据，存回json</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.to_json(<span class="string">'seeds/clean.json'</span>)</span><br></pre></td></tr></table></figure>
 
           
         
@@ -917,7 +1378,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1155,6 +1616,10 @@
 
   
   
+    
+      
+    
+      
     
       
     
