@@ -108,31 +108,31 @@
 
 
 
-  <meta name="description" content="Spark SQL命令和Spark shell命令操作hive中的表注意事项1.把hive的配置文件hive-site.xml复制到spark/conf下。2.启动的时候带上MySQL的连接驱动 Spark-shell spark-shell是通过得到sparksession然后调用sql方法执行hive的sql。12cd /app/spark/spark-2.2.0-bin-2.9.0/bin.">
+  <meta name="description" content="5. 数据展示采用echart图标进行数据展示 top10商品 top10访问 分时段数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spark SQL命令和Spark shell命令操作hive中的表">
-<meta property="og:url" content="http://guange.me/2018/12/31/sparksql-hive/index.html">
+<meta property="og:title" content="5. 数据展示">
+<meta property="og:url" content="http://guange.me/2018/12/31/bigdata5/index.html">
 <meta property="og:site_name" content="全能的哥">
-<meta property="og:description" content="Spark SQL命令和Spark shell命令操作hive中的表注意事项1.把hive的配置文件hive-site.xml复制到spark/conf下。2.启动的时候带上MySQL的连接驱动 Spark-shell spark-shell是通过得到sparksession然后调用sql方法执行hive的sql。12cd /app/spark/spark-2.2.0-bin-2.9.0/bin.">
+<meta property="og:description" content="5. 数据展示采用echart图标进行数据展示 top10商品 top10访问 分时段数据">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462338044313.jpg">
-<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462338116047.jpg">
-<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462338202052.jpg">
-<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462338360386.jpg">
-<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462338916992.jpg">
-<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462338975460.jpg">
-<meta property="og:updated_time" content="2018-12-31T06:14:44.283Z">
+<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462473740008.jpg">
+<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462482454433.jpg">
+<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462483095205.jpg">
+<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462487680056.jpg">
+<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462488591871.jpg">
+<meta property="og:image" content="http://pkl6fbp39.bkt.clouddn.com/15462491177684.jpg">
+<meta property="og:updated_time" content="2018-12-31T09:40:20.641Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark SQL命令和Spark shell命令操作hive中的表">
-<meta name="twitter:description" content="Spark SQL命令和Spark shell命令操作hive中的表注意事项1.把hive的配置文件hive-site.xml复制到spark/conf下。2.启动的时候带上MySQL的连接驱动 Spark-shell spark-shell是通过得到sparksession然后调用sql方法执行hive的sql。12cd /app/spark/spark-2.2.0-bin-2.9.0/bin.">
-<meta name="twitter:image" content="http://pkl6fbp39.bkt.clouddn.com/15462338044313.jpg">
+<meta name="twitter:title" content="5. 数据展示">
+<meta name="twitter:description" content="5. 数据展示采用echart图标进行数据展示 top10商品 top10访问 分时段数据">
+<meta name="twitter:image" content="http://pkl6fbp39.bkt.clouddn.com/15462473740008.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://guange.me/2018/12/31/sparksql-hive/">
+  <link rel="canonical" href="http://guange.me/2018/12/31/bigdata5/">
 
 
 
@@ -142,7 +142,7 @@
   };
 </script>
 
-  <title>Spark SQL命令和Spark shell命令操作hive中的表 | 全能的哥</title>
+  <title>5. 数据展示 | 全能的哥</title>
   
 
 
@@ -341,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://guange.me/2018/12/31/sparksql-hive/">
+    <link itemprop="mainEntityOfPage" href="http://guange.me/2018/12/31/bigdata5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="光哥">
@@ -358,7 +358,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spark SQL命令和Spark shell命令操作hive中的表
+          <h1 class="post-title" itemprop="name headline">5. 数据展示
               
             
           </h1>
@@ -383,7 +383,7 @@
                 
               
 
-              <time title="创建时间：2018-12-31 21:36:10 / 修改时间：14:14:44" itemprop="dateCreated datePublished" datetime="2018-12-31T21:36:10+08:00">2018-12-31</time>
+              <time title="创建时间：2018-12-31 23:35:10 / 修改时间：17:40:20" itemprop="dateCreated datePublished" datetime="2018-12-31T23:35:10+08:00">2018-12-31</time>
             
 
             
@@ -405,7 +405,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/大数据/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/电商大数据/" itemprop="url" rel="index"><span itemprop="name">电商大数据</span></a></span>
 
                 
                 
@@ -439,31 +439,10 @@
       
 
       
-        <h1 id="Spark-SQL命令和Spark-shell命令操作hive中的表"><a href="#Spark-SQL命令和Spark-shell命令操作hive中的表" class="headerlink" title="Spark SQL命令和Spark shell命令操作hive中的表"></a>Spark SQL命令和Spark shell命令操作hive中的表</h1><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1.把hive的配置文件hive-site.xml复制到spark/conf下。<br>2.启动的时候带上MySQL的连接驱动</p>
-<h3 id="Spark-shell"><a href="#Spark-shell" class="headerlink" title="Spark-shell"></a>Spark-shell</h3><ol>
-<li>spark-shell是通过得到sparksession然后调用sql方法执行hive的sql。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /app/spark/spark-2.2.0-bin-2.9.0/bin</span><br><span class="line">./spark-shell --master local[3] --jars /app/mysql-connector-java-5.1.46.jar</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><img src="http://pkl6fbp39.bkt.clouddn.com/15462338044313.jpg" alt=""></p>
-<ol>
-<li>查询hive中有哪些表<br><code>spark.sql(&quot;show tables&quot;).show</code><br><img src="http://pkl6fbp39.bkt.clouddn.com/15462338116047.jpg" alt=""></li>
-</ol>
-<ol>
-<li>查询hive中的表所有的数据<br><code>spark.sql(&quot;select * from emp&quot;).show</code><br><img src="http://pkl6fbp39.bkt.clouddn.com/15462338202052.jpg" alt=""></li>
-</ol>
-<h3 id="Spark-SQL命令的使用"><a href="#Spark-SQL命令的使用" class="headerlink" title="Spark SQL命令的使用"></a>Spark SQL命令的使用</h3><ol>
-<li>启动spark-sql<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /app/spark/spark-2.2.0-bin-2.9.0/bin</span><br><span class="line">./spark-sql --master local[3] --jars /app/mysql-connector-java-5.1.46.jar</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>在Spark SQL中可以直接执行SQL操作Hive</p>
-<ol>
-<li><p>查看hive中有哪些表<br><img src="http://pkl6fbp39.bkt.clouddn.com/15462338360386.jpg" alt=""></p>
-</li>
-<li><p>查看hive的emp表中的数据<br><code>spark-sql&gt;select * from emp;</code><br><img src="http://pkl6fbp39.bkt.clouddn.com/15462338916992.jpg" alt=""></p>
-</li>
-<li><p>创建一张表到hive中<br><code>create table t(key string,value string);</code><br><img src="http://pkl6fbp39.bkt.clouddn.com/15462338975460.jpg" alt=""></p>
-</li>
-</ol>
+        <h1 id="5-数据展示"><a href="#5-数据展示" class="headerlink" title="5. 数据展示"></a>5. 数据展示</h1><p>采用echart图标进行数据展示</p>
+<h2 id="top10商品"><a href="#top10商品" class="headerlink" title="top10商品"></a>top10商品</h2><p><img src="http://pkl6fbp39.bkt.clouddn.com/15462473740008.jpg" alt="-w339"><br><img src="http://pkl6fbp39.bkt.clouddn.com/15462482454433.jpg" alt="-w766"></p>
+<h2 id="top10访问"><a href="#top10访问" class="headerlink" title="top10访问"></a>top10访问</h2><p><img src="http://pkl6fbp39.bkt.clouddn.com/15462483095205.jpg" alt="-w438"><br><img src="http://pkl6fbp39.bkt.clouddn.com/15462487680056.jpg" alt="-w765"></p>
+<h2 id="分时段数据"><a href="#分时段数据" class="headerlink" title="分时段数据"></a>分时段数据</h2><p><img src="http://pkl6fbp39.bkt.clouddn.com/15462488591871.jpg" alt="-w858"><br><img src="http://pkl6fbp39.bkt.clouddn.com/15462491177684.jpg" alt="-w706"></p>
 
       
     </div>
@@ -494,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/31/bigdata2/" rel="next" title="2. 数据清洗">
-                <i class="fa fa-chevron-left"></i> 2. 数据清洗
+              <a href="/2018/12/31/bigdata4/" rel="next" title="4. 数据分析">
+                <i class="fa fa-chevron-left"></i> 4. 数据分析
               </a>
             
           </div>
@@ -503,10 +482,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/31/bigdata3/" rel="prev" title="3. 数据存储">
-                3. 数据存储 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -655,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spark-SQL命令和Spark-shell命令操作hive中的表"><span class="nav-number">1.</span> <span class="nav-text">Spark SQL命令和Spark shell命令操作hive中的表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">1.0.1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark-shell"><span class="nav-number">1.0.2.</span> <span class="nav-text">Spark-shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark-SQL命令的使用"><span class="nav-number">1.0.3.</span> <span class="nav-text">Spark SQL命令的使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5-数据展示"><span class="nav-number">1.</span> <span class="nav-text">5. 数据展示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#top10商品"><span class="nav-number">1.1.</span> <span class="nav-text">top10商品</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#top10访问"><span class="nav-number">1.2.</span> <span class="nav-text">top10访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分时段数据"><span class="nav-number">1.3.</span> <span class="nav-text">分时段数据</span></a></li></ol></li></ol></div>
             
 
           </div>
