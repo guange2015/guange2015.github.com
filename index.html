@@ -331,6 +331,372 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://guange.me/2018/12/31/bigdata4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="光哥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="全能的哥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/31/bigdata4/" class="post-title-link" itemprop="http://guange.me/index.html">4. 数据分析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-31 22:35:10 / 修改时间：14:39:34" itemprop="dateCreated datePublished" datetime="2018-12-31T22:35:10+08:00">2018-12-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/电商大数据/" itemprop="url" rel="index"><span itemprop="name">电商大数据</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><h2 id="用户session分析"><a href="#用户session分析" class="headerlink" title="用户session分析"></a>用户session分析</h2><ol>
+<li>用户session统计分析</li>
+<li>session聚合指标计算</li>
+<li>按比例随机抽取session</li>
+<li>获取每天点击</li>
+<li>下单和购买排名前10的品类</li>
+<li>top10品类的点击量</li>
+<li>排名前10的session</li>
+</ol>
+<p>##表结构<br>以下表结构均为简化版，仅仅为了实现项目结构而来，可以实现业务逻辑即可<br>表名： <code>user_visit_action</code> Hive表</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+<td>日期，代表这个用户点击行为 日子</td>
+</tr>
+<tr>
+<td>userid</td>
+<td>用户</td>
+</tr>
+<tr>
+<td>session_id</td>
+<td>唯一标示 sessionId</td>
+</tr>
+<tr>
+<td>action_time</td>
+<td>点击行为发生的时间点</td>
+</tr>
+<tr>
+<td>page_id</td>
+<td>点击某个商品 页面id</td>
+</tr>
+<tr>
+<td>search_keyword</td>
+<td>搜索关键词</td>
+</tr>
+<tr>
+<td>click_category_id</td>
+<td>点击品类（食品、电脑）</td>
+</tr>
+<tr>
+<td>click_product_id</td>
+<td>某个商品id</td>
+</tr>
+<tr>
+<td>order_category_ids</td>
+<td>代表商品加入购物车，比如6个商品但是商品对应的品类只有2个</td>
+</tr>
+<tr>
+<td>order_product_ids</td>
+<td>某次下单，具体对商品下的订单</td>
+</tr>
+<tr>
+<td>pay_category_ids</td>
+<td>某个订单，某几个订单，进行了一次支付，对应哪些品类</td>
+</tr>
+<tr>
+<td>pay_product_ids</td>
+<td>支付行为下，对应哪些具体商品</td>
+</tr>
+</tbody>
+</table>
+<p><code>user_visit_action</code>表，其实就是放，比如说网站，或者是app，每天的点击流的数据。可以理解为，用户对网站/app每点击一下，就会代表在这个表里面的一条数据。</p>
+<p>表名： <code>user_info</code> Hive表</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>通常是long类型，用户唯一标识</td>
+</tr>
+<tr>
+<td>username</td>
+<td>用户登录名称</td>
+</tr>
+<tr>
+<td>name</td>
+<td>每个用户自己昵称</td>
+</tr>
+<tr>
+<td>age</td>
+<td>年龄</td>
+</tr>
+<tr>
+<td>professional</td>
+<td>职业</td>
+</tr>
+<tr>
+<td>city</td>
+<td>用户所在城市</td>
+</tr>
+</tbody>
+</table>
+<p><code>userinfo</code>表，实际上普通用户信息表，省略掉很多基本信息</p>
+<p>表名： <code>task</code> mysql表</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task_id</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>taskname</td>
+<td>任务名称</td>
+</tr>
+<tr>
+<td>create_time</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>开始运行时间</td>
+</tr>
+<tr>
+<td>finish_time</td>
+<td>结束运行时间</td>
+</tr>
+<tr>
+<td>task_type</td>
+<td>任务类型；各种分析任务，比如session分析任务，页面单跳转化率统计任务</td>
+</tr>
+<tr>
+<td>task_status</td>
+<td>任务状态；新建、正在运行、已完毕</td>
+</tr>
+<tr>
+<td>task_param</td>
+<td>使用的json格式，封装用户提交任务对应特殊筛选参数</td>
+</tr>
+</tbody>
+</table>
+<p><code>task</code>表，其实是用来保存平台的使用者，通过J2EE系统，提交的基于特定筛选参数的分析任务，的信息，就会通过J2EE系统保存到task表中来。之所以使用MySQL表，是因为J2EE系统是要实现快速的实时插入和查询的。</p>
+<h2 id="spark电商session分析之随机抽取"><a href="#spark电商session分析之随机抽取" class="headerlink" title="spark电商session分析之随机抽取"></a>spark电商session分析之随机抽取</h2><p>一次执行用户访问session分析模块，要抽取出100个session</p>
+<p>session随机抽取：按每天的每个小时的session数量，占当天session总数的比例，乘以每天要抽取的session数量，计算出每个小时要抽取的session数量；然后呢，在每天每小时的session中，随机抽取出之前计算出来的数量的session。</p>
+<p>举例：10000个session，100个session；0点1点之间，有2000个session，占总session的比例就是0.2；按照比例，0点1点需要抽取出来的session数量是100 * 0.2 = 20个；在0点~点的2000个session中，随机抽取出来20个session。</p>
+<p>我们之前有什么数据：session粒度的聚合数据（计算出来session的start_time）</p>
+<p>session聚合数据进行映射，将每个session发生的yyyy-MM-dd_HH（start_time）作为key，value就是session_id<br>对上述数据，使用countByKey算子，就可以获取到每天每小时的session数量</p>
+<p>（按时间比例随机抽取算法）每天每小时有多少session，根据这个数量计算出每天每小时的session占比，以及按照占比，需要抽取多少session，可以计算出每个小时内，从0~session数量之间的范围中，获取指定抽取数量个随机数，作为随机抽取的索引</p>
+<p>把之前转换后的session数据（以yyyy-MM-dd_HH作为key），执行groupByKey算子；然后可以遍历每天每小时的session，遍历时，遇到之前计算出来的要抽取的索引，即将session抽取出来；抽取出来的session，直接写入MySQL数据库</p>
+<h2 id="Spark-电商分析-session分类top10点击-topN算法"><a href="#Spark-电商分析-session分类top10点击-topN算法" class="headerlink" title="Spark 电商分析 session分类top10点击 topN算法"></a>Spark 电商分析 session分类top10点击 topN算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public Iterable&lt;Tuple2&lt;String, String&gt;&gt; call(</span><br><span class="line">			Tuple2&lt;Long, Iterable&lt;String&gt;&gt; tuple)</span><br><span class="line">			throws Exception &#123;</span><br><span class="line">		long categoryid = tuple._1;</span><br><span class="line">		Iterator&lt;String&gt; iterator = tuple._2.iterator();</span><br><span class="line">		</span><br><span class="line">		// 定义取topn的排序数组</span><br><span class="line">		String[] top10Sessions = new String[10];   </span><br><span class="line">		</span><br><span class="line">		while(iterator.hasNext()) &#123;</span><br><span class="line">			String sessionCount = iterator.next();</span><br><span class="line">			long count = Long.valueOf(sessionCount.split(&quot;,&quot;)[1]);  </span><br><span class="line">			</span><br><span class="line">			// 遍历排序数组</span><br><span class="line">			for(int i = 0; i &lt; top10Sessions.length; i++) &#123;</span><br><span class="line">				// 如果当前i位，没有数据，那么直接将i位数据赋值为当前sessionCount</span><br><span class="line">				if(top10Sessions[i] == null) &#123;</span><br><span class="line">					top10Sessions[i] = sessionCount;</span><br><span class="line">					break;</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					long _count = Long.valueOf(top10Sessions[i].split(&quot;,&quot;)[1]);  </span><br><span class="line">					</span><br><span class="line">					// 如果sessionCount比i位的sessionCount要大</span><br><span class="line">					if(count &gt; _count) &#123;</span><br><span class="line">						// 从排序数组最后一位开始，到i位，所有数据往后挪一位</span><br><span class="line">						for(int j = 9; j &gt; i; j--) &#123;</span><br><span class="line">							top10Sessions[j] = top10Sessions[j - 1];</span><br><span class="line">						&#125;</span><br><span class="line">						// 将i位赋值为sessionCount</span><br><span class="line">						top10Sessions[i] = sessionCount;</span><br><span class="line">						break;</span><br><span class="line">					&#125;</span><br><span class="line">					</span><br><span class="line">					// 比较小，继续外层for循环</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		// 将数据写入MySQL表</span><br><span class="line">		List&lt;Tuple2&lt;String, String&gt;&gt; list = new ArrayList&lt;Tuple2&lt;String, String&gt;&gt;();</span><br><span class="line">		</span><br><span class="line">		for(String sessionCount : top10Sessions) &#123;</span><br><span class="line">			if(sessionCount != null) &#123;</span><br><span class="line">				String sessionid = sessionCount.split(&quot;,&quot;)[0];</span><br><span class="line">				long count = Long.valueOf(sessionCount.split(&quot;,&quot;)[1]);  </span><br><span class="line">				</span><br><span class="line">				// 将top10 session插入MySQL表</span><br><span class="line">				Top10Session top10Session = new Top10Session();</span><br><span class="line">				top10Session.setTaskid(taskid);  </span><br><span class="line">				top10Session.setCategoryid(categoryid);  </span><br><span class="line">				top10Session.setSessionid(sessionid);  </span><br><span class="line">				top10Session.setClickCount(count);  </span><br><span class="line">				</span><br><span class="line">				ITop10SessionDAO top10SessionDAO = DAOFactory.getTop10SessionDAO();</span><br><span class="line">				top10SessionDAO.insert(top10Session);  </span><br><span class="line">				</span><br><span class="line">				// 放入list</span><br><span class="line">				list.add(new Tuple2&lt;String, String&gt;(sessionid, sessionid));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		return list;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="分析结果输出"><a href="#分析结果输出" class="headerlink" title="分析结果输出"></a>分析结果输出</h2><p><code>top10_session</code>表</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>category_id</td>
+<td>分类</td>
+</tr>
+<tr>
+<td>session_id</td>
+<td>点击session，代表用户</td>
+</tr>
+<tr>
+<td>click_count</td>
+<td>点击次数</td>
+</tr>
+</tbody>
+</table>
+<p><code>top10_category</code>表</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>category_id</td>
+<td>分类</td>
+</tr>
+<tr>
+<td>order_count</td>
+<td>下单次数</td>
+</tr>
+<tr>
+<td>click_count</td>
+<td>点击次数</td>
+</tr>
+<tr>
+<td>pay_count</td>
+<td>付款次数</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://guange.me/2018/12/31/bigdata3/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1558,7 +1924,7 @@ memory usage: 468.4+ KB
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1798,6 +2164,8 @@ memory usage: 468.4+ KB
 
   
   
+    
+      
     
       
     
